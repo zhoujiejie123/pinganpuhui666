@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title> 在线咨询</title>
+</head>
+<body>
+    <style>
+        [name=chat] {
+            display: block !important;
+            width: 100% !important;
+        }
+        .base-button__BaseFrame-sc-10my82n-0 {
+            display: none !important;
+        }
+    </style>
+<script src="__PUBLIC__/index6/js/jquery-1.11.3.min.js"></script>
+<script type='text/javascript'>
+function getRandom() {
+
+    var arr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+
+        num = "";
+
+    for(var i = 0; i < 32; i++) {
+
+        num += arr[parseInt(Math.random() * 36)];
+
+    }
+
+    return num;
+
+}
+function randomString() {
+    let len = 32;
+    let chars ='ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    let maxPos = chars.length;
+    let character = '';
+    for (let i = 0; i < len; i++) {
+        character += chars.charAt(Math.floor(Math.random() * maxPos))
+    }
+    return character;
+}
+var uid = '';
+if(localStorage.getItem('uid')){
+    uid = localStorage.getItem('uid');
+}else{
+    uid = randomString();
+    localStorage.setItem('uid', uid);
+}
+    (function(a, b, c, d, e, j, s) {
+        a[d] = a[d] || function() {
+            (a[d].a = a[d].a || []).push(arguments)
+        };
+        j = b.createElement(c),
+            s = b.getElementsByTagName(c)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = 'https://static.meiqia.com/widget/loader.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 'dcb3b291a88f17f7cfecd3064c9d3a83');
+    _MEIQIA('clientId', uid);
+    // _MEIQIA('manualInit');
+    // _MEIQIA('init');
+    _MEIQIA('showPanel');
+    _MEIQIA('metadata', {$info});
+    // _MEIQIA('endConversation',handleEnd);
+    
+    function handleEnd() {
+        location.href = '/mobile/index';
+    }
+    var timer=setInterval(function(){
+        if($('[name=chat]').length == 1&&$('[name=chat]').contents().find('.handle').length == 1){
+            $('[name=chat]').contents().find('.handle').click(function(){$('body').addClass('_MEIQIA_FIX_BODY');history.back();/*location.href='/mobile/index'*/});
+            clearInterval(timer);
+        }
+    },500)
+</script>
+</body>
+</html>
